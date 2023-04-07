@@ -14,6 +14,7 @@ MANIFEST
 venv/
 .env
 env/
+env
 *.venv
 pip-selfcheck.json
 
@@ -28,3 +29,6 @@ pip-selfcheck.json
 *.pyc
 local_settings.py
 db.sqlite3
+
+# Docker
+docker-compose.yml
