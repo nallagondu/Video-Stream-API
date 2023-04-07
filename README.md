@@ -16,14 +16,19 @@ AWS account with S3 permissions
   
 3. Install the required dependencies:
 
-  `$ pip install -r requirements.txt`
+  `pip install -r requirements.txt`
   
 4. Set the following environment variables:
 
-  `AWS_ACCESS_KEY_ID=<your_aws_access_key_id>
+  ```
+  AWS_ACCESS_KEY_ID=<your_aws_access_key_id>
+  
   AWS_SECRET_ACCESS_KEY=<your_aws_secret_access_key>
+  
   AWS_REGION_NAME=<your_aws_region_name>
-  AWS_BUCKET_NAME=<your_aws_bucket_name>`
+  
+  AWS_BUCKET_NAME=<your_aws_bucket_name>
+  ```
   
 5. Start the server:
 
@@ -31,9 +36,13 @@ AWS account with S3 permissions
   
 6. Use the API endpoints to upload, stream, and download videos:
 
-  `POST /videos - Upload a video
-   GET /videos/{video_id}/stream - Stream a video
-   GET /videos/{video_id}/download - Download a video`
+  ```
+  POST /videos - Upload a video
+  
+  GET /videos/{video_id}/stream - Stream a video
+  
+  GET /videos/{video_id}/download - Download a video
+   ```
    
 # API Documentation
 
@@ -45,19 +54,23 @@ Upload a video to the server. The video file should be sent as a form-data file 
 
 Request
 
-`Content-Type: multipart/form-data
+```
+Content-Type: multipart/form-data
 
-video=<video-file>`
+video=<video-file>
+```
 
 Response
 
-`HTTP/1.1 201 Created
+```
+HTTP/1.1 201 Created
 
 {
   "id": "d7be78a8-9a7a-4f25-8b47-92c8d65e9446",
   "url": "https://s3.amazonaws.com/my-bucket/videos/d7be78a8-9a7a-4f25-8b47-92c8d65e9446.mp4",
   "created_at": "2023-04-06T12:00:00Z"
-}`
+}
+```
 
 ## Stream a Video
 
@@ -69,7 +82,8 @@ Stream a video from the server. The video is streamed using the Range header to 
 
 Response
 
-`HTTP/1.1 206 Partial Content
+```
+HTTP/1.1 206 Partial Content
 
 Content-Type: video/mp4
 Content-Range: bytes <start>-<end>/<total-size>
@@ -77,7 +91,8 @@ Content-Length: <content-length>
 Content-Disposition: inline; filename="<video_id>.mp4"
 Accept-Ranges: bytes
 
-<video-data>`
+<video-data>
+```
 
 ## Download a Video
 
@@ -87,13 +102,15 @@ Download a video from the server. The video is downloaded as a file attachment.
 
 Response
 
-`HTTP/1.1 200 OK
+```
+HTTP/1.1 200 OK
 
 Content-Type: application/octet-stream
 Content-Disposition: attachment; filename="<video_id>.mp4"
 Content-Length: <content-length>
 
-<video-data>`
+<video-data>
+```
 
 ## Conclusion
 
